@@ -115,7 +115,6 @@ module.exports = {
     ],
     '@typescript-eslint/no-dynamic-delete': 'warn',
     '@typescript-eslint/no-extraneous-class': 'warn',
-    '@typescript-eslint/no-implicit-any-catch': 'error',
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/no-invalid-void-type': 'off',
     '@typescript-eslint/no-non-null-assertion': 'error',
