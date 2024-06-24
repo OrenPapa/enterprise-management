@@ -28,7 +28,7 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx'],
-      extends: ['./.eslintrc-typescript.cjs'],
+      extends: ['./.eslint-typescript.cjs'],
     },
   ],
 };
