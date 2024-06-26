@@ -28,8 +28,15 @@
   },
   "homepage": "https://github.com/OrenPapa/enterprise-management#readme",
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@firebase/auth": "^1.7.4",
+    "@mui/material": "^5.15.20",
+    "firebase": "^10.12.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.0",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
