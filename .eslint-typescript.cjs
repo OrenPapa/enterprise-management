@@ -23,6 +23,7 @@ module.exports = {
   },
   rules: {
     'react/react-in-jsx-scope': 'off',
+    camelcase: ['error', { properties: 'never', ignoreImports: true }],
     'no-duplicate-imports': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/consistent-type-exports': 'error',
@@ -68,6 +69,10 @@ module.exports = {
       {
         selector: 'default',
         format: ['camelCase'],
+      },
+      {
+        selector: 'import',
+        format: ['camelCase', 'PascalCase'],
       },
       {
         selector: 'variableLike',

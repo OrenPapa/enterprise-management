@@ -1,7 +1,7 @@
-import React from "react";
+import type { ReactElement } from 'react';
 
-const App: React.FC = () => {
-  return <div>Hello, React with TypeScript!</div>;
-};
+function App(): ReactElement {
+  return <div>Welcome to React with TypeScript</div>;
+}
 
 export default App;

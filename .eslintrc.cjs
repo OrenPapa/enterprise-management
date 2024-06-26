@@ -23,6 +23,7 @@ module.exports = {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-unused-vars': 'error',
     'no-extra-boolean-cast': 'off',
+    camelcase: ['error', { properties: 'never', ignoreImports: true }],
     eqeqeq: 'error',
   },
   overrides: [

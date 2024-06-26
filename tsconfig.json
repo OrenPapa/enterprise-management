@@ -20,7 +20,7 @@
     "**/*.spec.ts",
     "**/*.spec.tsx",
     ".eslintrc.js",
-    "lint-staged.config.js",
+    "lint-staged.config.cjs",
     ".husky/**"
   ]
 }
