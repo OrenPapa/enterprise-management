@@ -1,7 +1,8 @@
 import type { ReactElement } from 'react';
+import Router from './router';
 
 function App(): ReactElement {
-  return <div>Welcome to React with TypeScript</div>;
+  return <Router />;
 }
 
 export default App;
