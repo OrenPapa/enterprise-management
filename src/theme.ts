@@ -12,6 +12,9 @@ const theme = createTheme({
       primary: '#070F2B',
       secondary: '#FFFFFF',
     },
+    error: {
+      main: '#f44336',
+    },
   },
   typography: {
     fontFamily: 'Aleo, Roboto, Arial, sans-serif',
@@ -21,12 +24,22 @@ const theme = createTheme({
       color: '#070F2B',
     },
     h2: {
+      fontSize: '24px',
+      fontWeight: 400,
+      color: '#070F2B',
+    },
+    h3: {
       fontSize: '20px',
       fontWeight: 400,
       color: '#070F2B',
     },
-    body1: {
+    h4: {
       fontSize: '16px',
+      fontWeight: 400,
+      color: '#070F2B',
+    },
+    body1: {
+      fontSize: '14px',
       fontWeight: 400,
       color: '#070F2B',
     },

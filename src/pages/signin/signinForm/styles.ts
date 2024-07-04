@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Box, TextField, Button, Divider, Typography } from '@mui/material';
+import { Box, TextField, Button, Divider } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const FormContainer = styled(Box)`
@@ -7,23 +8,24 @@ export const FormContainer = styled(Box)`
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  max-width: 400px;
-  margin: 8px;
+  width: 380px;
+  margin: 16px;
   padding: 32px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: white;
   border-radius: 4px;
   user-select: none;
+
+  @media (max-width: 460px) {
+    width: 360px;
+  }
 `;
 
-export const Title = styled(Typography)`
+export const Title = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
   text-align: center;
   margin: 0;
-`;
-
-export const Subtitle = styled(Typography)`
-  text-align: center;
-  margin: 0 0 16px 0;
 `;
 
 export const StyledTextField = styled(TextField)`
@@ -77,16 +79,26 @@ export const SocialButton = styled(Button)<SocialButtonProps>`
   }
 `;
 
-export const SignInText = styled.p`
+export const ForgotPasswordLink = styled(Link)`
+  align-self: flex-end;
+  margin-top: -12px;
+  margin-bottom: 16px;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
+export const SignUpText = styled.p`
   text-align: center;
-  margin: 0;
 
   a {
     text-decoration: none;
     font-weight: bold;
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
   }
 `;

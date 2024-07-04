@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import styled from 'styled-components';
 
 export const FullHeightContainer = styled(Box)`
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: row;
 `;
@@ -13,10 +13,7 @@ export const LeftContainer = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media (max-width: 1200px) {
-    display: none;
-  }
+  background-color: #eeeeee;
 `;
 
 export const RightContainer = styled(Box)`
@@ -24,7 +21,10 @@ export const RightContainer = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #eeeeee;
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 export const Image = styled.img`

@@ -1,77 +1,52 @@
-import { useState } from 'react';
-import { auth, db } from '../../../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
+import React, { type ChangeEvent, useState } from 'react';
+import { auth } from '../../../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import {
   FormContainer,
   Title,
-  Subtitle,
   StyledTextField,
   StyledButton,
   SocialButtonContainer,
   SocialButton,
   StyledDivider,
-  SignInText,
+  ForgotPasswordLink,
+  SignUpText,
   Icon,
 } from './styles';
-import { IconButton, InputAdornment } from '@mui/material';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import type { FirebaseError } from 'firebase/app';
+import { InputAdornment, IconButton } from '@mui/material';
 import { handleResponseMessage } from '../../../helper';
+import type { FirebaseError } from 'firebase/app';
 import ErrorMessage from '../../../components/errorMessage';
 
 interface Credentials {
-  firstName: string;
-  lastName: string;
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
-const SignUpForm: React.FC = () => {
+const SignInForm: React.FC = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setConfirmPassword] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
   const [credentials, setCredentials] = useState<Credentials>({
-    firstName: '',
-    lastName: '',
     email: '',
     password: '',
-    confirmPassword: '',
   });
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
 
-  const toggleConfirmPasswordVisibility = () => {
-    setConfirmPassword((prev) => !prev);
-  };
-
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setResponseMessage('');
-    if (credentials.password !== credentials.confirmPassword) {
-      console.error('Passwords do not match');
-      return;
-    }
     try {
-      const userCredential = await createUserWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
         credentials.email,
         credentials.password,
       );
-      const user = userCredential.user;
-
-      await addDoc(collection(db, 'users'), {
-        uid: user.uid,
-        firstName: credentials.firstName,
-        lastName: credentials.lastName,
-        email: credentials.email,
-        role: 'admin',
-      });
       navigate('/');
     } catch (error) {
       const firebaseError = error as FirebaseError;
@@ -85,7 +60,7 @@ const SignUpForm: React.FC = () => {
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setCredentials((prev) => ({
       ...prev,
@@ -94,27 +69,8 @@ const SignUpForm: React.FC = () => {
   };
 
   return (
-    <FormContainer component="form" onSubmit={handleRegister}>
-      <Title variant="h2">Welcome to the Enterprise Management Tool</Title>
-      <Subtitle variant="h4">
-        The only platform you need to manage your business efficiently
-      </Subtitle>
-      <StyledTextField
-        size="small"
-        label="First name"
-        name="firstName"
-        value={credentials.firstName}
-        onChange={handleChange}
-        fullWidth
-      />
-      <StyledTextField
-        size="small"
-        label="Last name"
-        name="lastName"
-        value={credentials.lastName}
-        onChange={handleChange}
-        fullWidth
-      />
+    <FormContainer component="form" onSubmit={handleSignIn}>
+      <Title>Sign in</Title>
       <StyledTextField
         size="small"
         label="Email"
@@ -143,31 +99,10 @@ const SignUpForm: React.FC = () => {
           ),
         }}
       />
-      <StyledTextField
-        size="small"
-        label="Confirm Password"
-        name="confirmPassword"
-        type={showConfirmPassword ? 'text' : 'password'}
-        value={credentials.confirmPassword}
-        onChange={handleChange}
-        fullWidth
-        autoComplete="new-password"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton onClick={toggleConfirmPasswordVisibility} edge="end">
-                <Icon
-                  icon={showConfirmPassword ? faEyeSlash : faEye}
-                  size="xs"
-                />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
+      <ForgotPasswordLink to={'/'}>Forgot Password?</ForgotPasswordLink>
       <ErrorMessage message={responseMessage} icon={false} />
       <StyledButton type="submit" variant="contained" color="primary">
-        Sign up
+        Sign in
       </StyledButton>
       <StyledDivider>or</StyledDivider>
       <SocialButtonContainer>
@@ -178,11 +113,11 @@ const SignUpForm: React.FC = () => {
           Facebook
         </SocialButton>
       </SocialButtonContainer>
-      <SignInText>
-        Already have an account? <a href="/sign-up">Sign in</a>
-      </SignInText>
+      <SignUpText>
+        Don&apos;t have an account yet? <a href="/sign-up">Sign up</a>
+      </SignUpText>
     </FormContainer>
   );
 };
 
-export default SignUpForm;
+export default SignInForm;
